@@ -48,6 +48,7 @@ return view.extend({
 					E('th', { 'class': 'th left cbi-section-actions' }, _('Stations Connected')),
 					E('th', { 'class': 'th left cbi-section-actions' }, E('span', { 'data-tooltip': _('High Throughput') }, [ _('HT') ])),
 					E('th', { 'class': 'th left cbi-section-actions' }, E('span', { 'data-tooltip': _('Very High Throughput') }, [ _('VHT') ])),
+                                        E('th', { 'class': 'th left cbi-section-actions' }, E('span', { 'data-tooltip': _('High Efficiency') }, [ _('HE') ])),
 					E('th', { 'class': 'th center cbi-section-actions' }, _('Clients')),
 				])
 			]);
@@ -58,6 +59,7 @@ return view.extend({
 						E('th', { 'class': 'th' }, _('Client')),
 						E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('High Throughput') }, [ _('HT') ])),
 						E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('Very High Throughput') }, [ _('VHT') ])),
+                                                E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('High Efficiency') }, [ _('HE') ])),
 						E('th', { 'class': 'th' }, _('Signal'))
 					])
 				]);
@@ -70,6 +72,7 @@ return view.extend({
 							dawn.getHostnameFromMAC(hostHintsData ,clientData[i][0]),
 							dawn.getAvailableText(clientData[i][1].ht),
 							dawn.getAvailableText(clientData[i][1].vht),
+                                                        dawn.getAvailableText(clientData[i][1].he),
 							clientData[i][1].signal
 						]);
 					}
@@ -86,6 +89,7 @@ return view.extend({
 					ap[1].num_sta,
 					dawn.getAvailableText(ap[1].ht_support),
 					dawn.getAvailableText(ap[1].vht_support),
+                                        dawn.getAvailableText(ap[1].he_support),
 					ap[1].num_sta > 0 ? client_table[ap[0]] : E('em', { 'style': 'display: inline' }, _('No clients connected.'))
 				]
 			});

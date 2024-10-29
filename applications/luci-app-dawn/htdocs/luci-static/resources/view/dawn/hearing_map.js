@@ -62,6 +62,7 @@ return view.extend({
 					E('th', { 'class': 'th' }, _('Frequency')),
 					E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('High Throughput') }, [ _('HT') ])),
 					E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('Very High Throughput') }, [ _('VHT') ])),
+                                        E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('High Efficiency') }, [ _('HE') ])),
 					E('th', { 'class': 'th' }, _('Signal')),
 					E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('Received Channel Power Indication') }, [ _('RCPI') ])),
 					E('th', { 'class': 'th' }, E('span', { 'data-tooltip': _('Received Signal to Noise Indicator') }, [ _('RSNI') ])),
@@ -76,12 +77,14 @@ return view.extend({
 				return Object.entries(client[1]).map(function(ap) {
 
 					if (ap[1].freq != 0) {
+                                                console.log(ap[1]);
 						return [
 							dawn.getHostnameFromMAC(hostHintsData, client[0]),
 							dawn.getHostnameFromMAC(accessPointsHintsData, ap[0]),
 							dawn.getFormattedNumber(ap[1].freq, 3, 1000) + ' GHz (' + _('Channel') + ': ' + dawn.getChannelFromFrequency(ap[1].freq) + ')',
 							dawn.getAvailableText(ap[1].ht_capabilities && ap[1].ht_support),
 							dawn.getAvailableText(ap[1].vht_capabilities && ap[1].vht_support),
+                                                        dawn.getAvailableText(ap[1].he_capabilities && ap[1].he_support),
 							ap[1].signal,
 							ap[1].rcpi,
 							ap[1].rsni,
